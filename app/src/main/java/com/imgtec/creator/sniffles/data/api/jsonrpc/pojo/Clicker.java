@@ -53,6 +53,10 @@ public class Clicker {
   @SerializedName("inProvisionState")
   boolean inProvisionState;
 
+  @Expose
+  @SerializedName("isError")
+  boolean isError;
+
   public boolean isProvisioned() {
     return isProvisioned;
   }
@@ -95,5 +99,13 @@ public class Clicker {
 
   public void setInProvisionState(boolean inProvisionState) {
     this.inProvisionState = inProvisionState;
+  }
+
+  public boolean isError() {
+    return isError;
+  }
+
+  public void setError(boolean error) {
+    isError = error;
   }
 }

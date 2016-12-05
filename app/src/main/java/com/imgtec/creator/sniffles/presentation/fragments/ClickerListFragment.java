@@ -159,6 +159,12 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
   }
 
   @Override
+  public void onProvisioningError(Clicker clicker) {
+    Toast.makeText(getContext(), String.format("%s provisioning failed! Retry?", clicker.getClickerName()),
+        Toast.LENGTH_LONG).show();
+  }
+
+  @Override
   protected void setComponent() {
     ((HasComponent<ActivityComponent>) getActivity()).getComponent().inject(this);
   }

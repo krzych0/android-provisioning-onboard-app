@@ -32,6 +32,7 @@
 package com.imgtec.creator.sniffles.presentation.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,8 @@ public class ClickersAdapter extends BaseAdapter<ClickersAdapter.ClickerWrapper,
 
   public interface ClickersAdapterListener {
     void onStartProvisioningClicked(Clicker clicker);
+
+    void onProvisioningError(Clicker clicker);
   }
 
   private Context context;
@@ -163,6 +166,7 @@ public class ClickersAdapter extends BaseAdapter<ClickersAdapter.ClickerWrapper,
     @BindView(R.id.clicker_item_container) ViewGroup container;
     @BindView(R.id.clicker_name_tv) TextView clickerName;
     @BindView(R.id.start_provisioning_button) Button startProvisioningButton;
+    @BindView(R.id.provisioning_progress) ProgressBar provisioningProgress;
     @BindView(R.id.connected) ImageView connected;
 
     public ItemViewHolder(View itemView, ClickersAdapterListener listener) {
@@ -177,28 +181,46 @@ public class ClickersAdapter extends BaseAdapter<ClickersAdapter.ClickerWrapper,
 
       if (clicker.getInProvisionState()) {
         startProvisioningButton.setVisibility(View.GONE);
+        provisioningProgress.setVisibility(View.VISIBLE);
+        provisioningProgress.getIndeterminateDrawable().setColorFilter(
+            Color.parseColor("#3c0555"),
+            android.graphics.PorterDuff.Mode.MULTIPLY);
+
+        connected.setVisibility(View.GONE);
+
       } else if (clicker.getSelected()) {
         startProvisioningButton.setVisibility(View.VISIBLE);
+        provisioningProgress.setVisibility(View.GONE);
+        connected.setVisibility(View.GONE);
 
-      } else {
-        startProvisioningButton.setVisibility(View.GONE);
-      }
-
-      if (clicker.isProvisioned()) {
+      } else if (clicker.isProvisioned()) {
         connected.setVisibility(View.VISIBLE);
         startProvisioningButton.setVisibility(View.GONE);
-      }
-      else {
+        provisioningProgress.setVisibility(View.GONE);
+
+      } else {
         connected.setVisibility(View.GONE);
+        provisioningProgress.setVisibility(View.GONE);
+        startProvisioningButton.setVisibility(View.GONE);
+
+      }
+
+      if (clicker.isError()) {
         startProvisioningButton.setVisibility(View.VISIBLE);
+        connected.setVisibility(View.GONE);
+        provisioningProgress.setVisibility(View.GONE);
+        listener.onProvisioningError(clicker);
+
       }
 
       startProvisioningButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+          v.setVisibility(View.GONE); //hide provisioning button
           listener.onStartProvisioningClicked(clicker);
         }
       });
+
       if (!clicker.getSelected()) {
         startProvisioningButton.setVisibility(View.GONE);
       }
