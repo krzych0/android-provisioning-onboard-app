@@ -1,0 +1,27 @@
+@startuml
+
+
+participant "Mobile Client" as client
+participant "Ci40: Provisioning Deamon" as deamon
+
+
+client -> deamon: requestProvisionigDemonState()
+client <-- deamon: response:JsonRpcResponse<ProvisioningDaemonState>
+note left
+Contains list of constrained devices.
+end note
+
+client -> client: refresh
+
+client -> deamon: selectClicker(clickerId)
+client <-- deamon: response: JsonRPCResponse<Boolean>
+note right
+Provisioning deamon stores selected clicker.
+end note
+client -> client: refresh
+
+client -> deamon: startProvisioning()
+client <-- deamon: response: JsonRPCResponse<Boolean>
+client -> client: refresh
+
+@enduml
