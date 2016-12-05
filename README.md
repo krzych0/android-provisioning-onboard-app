@@ -27,7 +27,7 @@
   * introduce Ci40 with a user-friendly client name (the board will be visible on the developer console with that name), 
   * provide configuration for the Awa client
   
-  This is known as the "Ci40 onboarding process".
+ This is known as the "Ci40 onboarding process".
   
   For constrained devices the "provisioning process" requires the mobile client to:
    
@@ -123,8 +123,25 @@
   
 # Constrained device provisioning
   
-  To be done...
-
+ As previously mentioned, provisioning of constrained devices is about obtaining 
+ a PSK from the Device Server and passing it to the device. 
+ 
+ To do that mobile client needs to communicate with constrained devices via
+ the provisioning daemon process running on Ci40. In this context the mobile client 
+ should be treated as a controller that knows how to (via JSON-RPC):
+  - request a list of available constrained devices,
+  - select a constrained device,
+  - launch provisioning on selected device.
+   
+  The following diagram presents this procedure: 
+  
+  ![](docs/provisioning.png)
+  
+  For more information about provisioning, please read the documentation
+  for the [provisioning daemon] (https://github.com/CreatorDev/ci40-provision-daemon)
+  and [onboarding scripts] (https://github.com/CreatorDev/ci40-onboarding-scripts).
+  
+ 
 # Contributing
 If you have a contribution to make please follow the processes laid out in [contributor guide](CONTRIBUTING.md).
   
