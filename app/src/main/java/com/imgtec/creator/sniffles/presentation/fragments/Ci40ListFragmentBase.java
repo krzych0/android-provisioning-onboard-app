@@ -179,7 +179,7 @@ public abstract class Ci40ListFragmentBase extends BaseFragment {
   }
 
   protected void showRpcLoginDialog(final String ipAddress) {
-    LayoutInflater inflater = getLayoutInflater(null);
+    LayoutInflater inflater = LayoutInflater.from(getContext());
     final View dialogView = inflater.inflate(R.layout.rpc_login_dialog, null);
     final EditText username = (EditText) dialogView.findViewById(R.id.username);
     final EditText passwd = (EditText) dialogView.findViewById(R.id.password);
