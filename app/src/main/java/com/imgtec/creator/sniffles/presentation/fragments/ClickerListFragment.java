@@ -179,7 +179,6 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
     actionBar.setTitle(R.string.ci_40);
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setHomeButtonEnabled(true);
-    actionBar.setShowHideAnimationEnabled(true);
     setHasOptionsMenu(false);
   }
 

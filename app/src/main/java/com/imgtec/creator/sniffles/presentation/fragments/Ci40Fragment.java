@@ -139,7 +139,6 @@ public class Ci40Fragment extends BaseFragment {
     actionBar.setTitle(R.string.ci_40);
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setHomeButtonEnabled(true);
-    actionBar.setShowHideAnimationEnabled(true);
     setHasOptionsMenu(false);
   }
 
@@ -190,7 +189,7 @@ public class Ci40Fragment extends BaseFragment {
   }
 
   private void showSetNameDialog() {
-    final View dialogView = getLayoutInflater(null).inflate(R.layout.client_name_dialog, null);
+    final View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.client_name_dialog, null);
     final EditText name = (EditText) dialogView.findViewById(R.id.name);
     AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle);
     builder

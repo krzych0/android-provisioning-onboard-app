@@ -38,31 +38,31 @@ allprojects {
 ext {
 
     //Android:
-    snifflesCompileSdkVersion = 24
-    snifflesBuildToolsVersion = '25.0.0'
+    snifflesCompileSdkVersion = 25
+    snifflesBuildToolsVersion = '25.0.1'
 
     snifflesApplicationId = 'com.imgtec.creator.sniffles'
     snifflesTestApplicationId = 'com.imgtec.creator.sniffles.test'
     snifflesMinSdkVersion = 19
-    snifflesTargetSdkVersion = 24
+    snifflesTargetSdkVersion = 25
     snifflesVersionCode = 1
     snifflesVersionName = "1.0.0"
 
 
     //----------------------------------------------------------------------
-    diCompileSdkVersion = 24
-    diBuildToolsVersion = '25.0.0'
+    diCompileSdkVersion = 25
+    diBuildToolsVersion = '25.0.1'
 
     diMinSdkVersion = 19
-    diTargetSdkVersion = 24
+    diTargetSdkVersion = 25
     diVersionCode = 1
     diVersionName = "1.0.0"
     //----------------------------------------------------------------------
 
     //libraries
-    appCompatVersion = '24.2.1'
-    appDesignVersion = '24.2.1'
-    recyclerViewVersion = '24.2.1'
+    appCompatVersion = '25.0.1'
+    appDesignVersion = '25.0.1'
+    recyclerViewVersion = '25.0.1'
 
     butterKnifeVersion = '8.1.0'
 

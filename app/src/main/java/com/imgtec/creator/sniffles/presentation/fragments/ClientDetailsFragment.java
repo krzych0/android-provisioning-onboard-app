@@ -140,7 +140,6 @@ public class ClientDetailsFragment extends BaseFragment {
     actionBar.setTitle(client.getName());
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setHomeButtonEnabled(true);
-    actionBar.setShowHideAnimationEnabled(true);
     setHasOptionsMenu(false);
   }
 
