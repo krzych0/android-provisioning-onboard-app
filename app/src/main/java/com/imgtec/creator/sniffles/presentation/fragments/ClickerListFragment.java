@@ -129,7 +129,10 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
         .setOnItemClickListener(new RecyclerItemClickSupport.OnItemClickListener() {
           @Override
           public void onItemClicked(RecyclerView recyclerView, int position, View view) {
-            requestSelectClicker(adapter.getItem(position).getClicker().getClickerID());
+            final ClickersAdapter.ClickerWrapper wrapper = adapter.getItem(position);
+            if (wrapper.getType() == ClickersAdapter.ClickerWrapper.Type.ITEM ) {
+              requestSelectClicker(wrapper.getClicker().getClickerID());
+            }
           }
         });
   }
@@ -246,7 +249,8 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
 
 
 
-  private ApiCallback<JsonRPCApiService, JsonRPCResponse<ProvisioningDaemonState>> provisioningDaemonStateCallback = new ApiCallback<JsonRPCApiService, JsonRPCResponse<ProvisioningDaemonState>>() {
+  private ApiCallback<JsonRPCApiService, JsonRPCResponse<ProvisioningDaemonState>> provisioningDaemonStateCallback
+      = new ApiCallback<JsonRPCApiService, JsonRPCResponse<ProvisioningDaemonState>>() {
 
     @Override
     public void onSuccess(JsonRPCApiService service, final JsonRPCResponse<ProvisioningDaemonState> response) {
@@ -279,8 +283,10 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
       mainHandler.post(new Runnable() {
         @Override
         public void run() {
-          hideProgressDialog();
-          showToast(String.format("Failed to execute provisioningDaemonState method. %s", t.getMessage()));
+          if (getActivity() != null && isAdded()) {
+            hideProgressDialog();
+            showToast(String.format("Failed to execute provisioningDaemonState method. %s", t.getMessage()));
+          }
         }
       });
     }
@@ -293,11 +299,13 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
       mainHandler.post(new Runnable() {
         @Override
         public void run() {
-          if (response.getResult() != null && response.getResult()) {
-            jsonRpc.getProvisioningDaemonState(ipAddr, username, password, provisioningDaemonStateCallback);
-          } else {
-            hideProgressDialog();
-            showToast("Couldn't start provisioning daemon on Ci40.");
+          if (getActivity() != null && isAdded()) {
+            if (response.getResult() != null && response.getResult()) {
+              jsonRpc.getProvisioningDaemonState(ipAddr, username, password, provisioningDaemonStateCallback);
+            } else {
+              hideProgressDialog();
+              showToast("Couldn't start provisioning daemon on Ci40.");
+            }
           }
         }
       });
@@ -322,10 +330,12 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
       mainHandler.post(new Runnable() {
         @Override
         public void run() {
-          if (result.getResult() != null && result.getResult()) {
-            jsonRpc.getProvisioningDaemonState(ipAddr, username, password, provisioningDaemonStateCallback);
-          } else {
-            showToast(result.getError().getMessage());
+          if (getActivity() != null && isAdded()) {
+            if (result.getResult() != null && result.getResult()) {
+              jsonRpc.getProvisioningDaemonState(ipAddr, username, password, provisioningDaemonStateCallback);
+            } else {
+              showToast(result.getError().getMessage());
+            }
           }
         }
       });
@@ -336,8 +346,10 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
       mainHandler.post(new Runnable() {
         @Override
         public void run() {
-          hideProgressDialog();
-          showToast(String.format("Failed to execute startProvisioning method. %s", t.getMessage()));
+          if (getActivity() != null && isAdded()) {
+            hideProgressDialog();
+            showToast(String.format("Failed to execute startProvisioning method. %s", t.getMessage()));
+          }
         }
       });
 
@@ -351,11 +363,13 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
       mainHandler.post(new Runnable() {
         @Override
         public void run() {
-          if (response.getResult() != null && response.getResult()) {
-            jsonRpc.getProvisioningDaemonState(ipAddr, username, password, provisioningDaemonStateCallback);
-          } else {
-            hideProgressDialog();
-            showToast(response.getError().getMessage());
+          if (getActivity() != null && isAdded()) {
+            if (response.getResult() != null && response.getResult()) {
+              jsonRpc.getProvisioningDaemonState(ipAddr, username, password, provisioningDaemonStateCallback);
+            } else {
+              hideProgressDialog();
+              showToast(response.getError().getMessage());
+            }
           }
 
         }
@@ -367,8 +381,10 @@ public class ClickerListFragment extends BaseFragment implements ClickersAdapter
       mainHandler.post(new Runnable() {
         @Override
         public void run() {
-          hideProgressDialog();
-          showToast(String.format("Failed to execute selectClicker method. %s", t.getMessage()));
+          if (getActivity() != null && isAdded()) {
+            hideProgressDialog();
+            showToast(String.format("Failed to execute selectClicker method. %s", t.getMessage()));
+          }
         }
       });
 
