@@ -28,14 +28,30 @@
   ~  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   ~
   -->
-
-<android.support.v7.widget.RecyclerView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/client_details_list"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    android:background="@android:color/white"
-    tools:listitem="@layout/client_details_list_item">
-</android.support.v7.widget.RecyclerView>
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/client_details_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:background="@android:color/white"
+        tools:listitem="@layout/client_details_list_item">
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tools:text="@string/no_info_demon_found"
+        style="@style/AppTheme.ListItemTitle"
+        android:padding="8dp"
+        android:visibility="gone"
+        />
+</RelativeLayout>

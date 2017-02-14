@@ -45,6 +45,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.GsonBuilder;
@@ -82,6 +83,7 @@ public class ClientDetailsFragment extends BaseFragment {
   final Logger logger = LoggerFactory.getLogger(getClass());
 
   @BindView(R.id.client_details_list) RecyclerView recyclerView;
+  @BindView(R.id.info) TextView info;
 
   @Inject DeviceServerApiService deviceServerApiService;
   @Inject @Named("Main") Handler mainHandler;
@@ -211,6 +213,7 @@ public class ClientDetailsFragment extends BaseFragment {
 
     @Override
     protected void onSuccess(ClientDetailsFragment fragment, DeviceServerApiService service, List<DeviceInfo> result) {
+      fragment.hideInfoMessage();
       if (result.size() == 0) {
         return;
       }
@@ -239,9 +242,20 @@ public class ClientDetailsFragment extends BaseFragment {
     @Override
     protected void onFailure(ClientDetailsFragment fragment, DeviceServerApiService service, Throwable t) {
       fragment.hideProgressDialog();
+      fragment.showInfoMessage(fragment.getString(R.string.no_info_demon_found));
       Toast.makeText(fragment.getContext(), "Requesting client details failed! " + t.getMessage(),
           Toast.LENGTH_LONG).show();
     }
+  }
+
+  private void showInfoMessage(final String msg) {
+    info.setVisibility(View.VISIBLE);
+    info.setText(msg);
+  }
+
+  private void hideInfoMessage() {
+    info.setVisibility(View.GONE);
+    info.setText("");
   }
 
   private void tryAddElement(List<Pair<String, Object>> pairs) {

@@ -86,5 +86,6 @@
     <string name="provisioned_devices">PROVISIONED DEVICES</string>
     <string name="provision">PROVISION</string>
     <string name="connected">CONNECTED</string>
+    <string name="no_info_demon_found">No Ci40-info-deamon found. \nPlease check if daemon is running.</string>
 
 </resources>
