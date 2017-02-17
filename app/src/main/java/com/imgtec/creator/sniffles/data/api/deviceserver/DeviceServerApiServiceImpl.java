@@ -190,6 +190,7 @@ public class DeviceServerApiServiceImpl implements DeviceServerApiService {
           if (result.getItems().size() == 0) {
             callback.onFailure(DeviceServerApiServiceImpl. this,
                 new RuntimeException("No ObjectType found matching filtering criteria."));
+            return;
           }
 
           List<DeviceInfo> infos = new ArrayList<>();
