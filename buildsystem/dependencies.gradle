@@ -46,7 +46,7 @@ ext {
     snifflesMinSdkVersion = 19
     snifflesTargetSdkVersion = 25
     snifflesVersionCode = 1
-    snifflesVersionName = "1.0.0"
+    snifflesVersionName = "1.0.1"
 
 
     //----------------------------------------------------------------------
