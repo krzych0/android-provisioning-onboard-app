@@ -3,6 +3,8 @@
 ---
 
 # Prerequisites
+This application requires Android 5.0 or above.
+
  After importing project to Android Studio please rename 'app/gradle.properties.sample'
  to 'app/gradle.properties' and provide proper configuration to sign your app.
 
